@@ -3,19 +3,11 @@ import React from 'react';
 const ProfileFunc = (props) => {
     const name = props.name.split(' ')[0];
 
-    const date = props.registredAt.getDate();
-    const month = props.registredAt.getMonth();
-    const year = props.registredAt.getFullYear();
-
-    const registrationDate = `${date} ${montoToStr(month)} ${year}`;
-
-    function montoToStr(num) {
-        return num > 12 || num < 1
-            ? null
-            : 'января,февраля,марта,апреля,мая,июня,июля,августа,сентября,октября,ноября,декабря'.split(
-                  ',',
-              )[num];
-    }
+    const registrationDate = props.registredAt.toLocaleDateString('ru-RU', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+    });
 
     return (
         <div

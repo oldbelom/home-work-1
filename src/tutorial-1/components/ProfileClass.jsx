@@ -1,23 +1,15 @@
 import React, { Component } from 'react';
 
 export default class ProfileClass extends Component {
-    montoToStr(num) {
-        return num > 12 || num < 1
-            ? null
-            : 'января,февраля,марта,апреля,мая,июня,июля,августа,сентября,октября,ноября,декабря'.split(
-                  ',',
-              )[num];
-    }
-
-    getRegistrationDate() {
-        return `
-            ${this.props.registredAt.getDate()}
-            ${this.montoToStr(this.props.registredAt.getMonth())}
-            ${this.props.registredAt.getFullYear()}
-        `;
-    }
-
     render() {
+        const name = this.props.name.split(' ')[0];
+
+        const registrationDate = this.props.registredAt.toLocaleDateString('ru-RU', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+        });
+
         return (
             <div
                 style={{
@@ -28,9 +20,9 @@ export default class ProfileClass extends Component {
                     borderRadius: 10,
                 }}>
                 <p style={{ fontSize: 18, marginBottom: 10, marginTop: 0 }}>
-                    Привет, <b>{this.props.name.split(' ')[0]}!</b>
+                    Привет, <b>{name}!</b>
                 </p>
-                <span>Дата регистрации: {this.getRegistrationDate()}</span>
+                <span>Дата регистрации: {registrationDate}</span>
             </div>
         );
     }
