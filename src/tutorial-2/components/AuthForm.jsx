@@ -5,16 +5,22 @@ export default function AuthForm() {
     let email = '';
     let password = '';
 
-    const handleChangeInput = (e) => {
-        e.target.type === 'text' ? (email = e.target.value) : (password = e.target.value);
+    const handleChangeInput = (event) => {
+        if (event.target.type === 'text') {
+            email = event.target.value;
+        } else {
+            password = event.target.value;
+        }
     };
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
+    const handleSubmit = (event) => {
+        event.preventDefault();
 
-        if (email.trim() !== '' && password.trim() !== '') {
+        if (email.trim() && password.trim()) {
             console.log({ email, password });
-            e.target.reset();
+            event.target.reset();
+            email = '';
+            password = '';
         } else {
             alert('Необходимо заполнить поля');
         }
