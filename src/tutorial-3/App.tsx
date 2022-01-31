@@ -1,10 +1,11 @@
-import React from 'react'
-import AuthForm from './components/AuthForm'
+import React from 'react';
+import List from './components/List';
+import { tabs } from './questions';
 
 export default function App() {
     return (
         <div>
-            <AuthForm />
+            <List tabs={tabs} />
         </div>
-    )
+    );
 }
