@@ -19,7 +19,7 @@ export default function App() {
     }, [comments]);
 
     const deleteComment = (index: number) => {
-        const newArr = comments.filter((_, i) => !(i === index));
+        const newArr = comments.filter((_, i) => i !== index);
         setComments(newArr);
     };
 

@@ -5,32 +5,34 @@ import TextField from '@mui/material/TextField';
 import { Comment } from '../types';
 
 const FeedbackForm = ({ setComments }: any) => {
-    const [name, setName] = React.useState<string>('');
-    const [email, setEmail] = React.useState<string>('');
-    const [text, setText] = React.useState<string>('');
+    const [fields, setFields] = React.useState<Comment>({
+        fullName: '',
+        email: '',
+        createdAt: String(new Date()),
+        text: '',
+    });
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        if (event.target.id === 'name') {
-            setName(event.target.value);
-        } else if (event.target.id === 'email') {
-            setEmail(event.target.value);
-        } else {
-            setText(event.target.value);
-        }
+        setFields((prev) => ({
+            ...prev,
+            [event.target.name]: event.target.value,
+        }));
     };
 
     const handleFormSubmit = () => {
         const newComment: Comment = {
-            fullName: name,
-            email: email,
+            ...fields,
             createdAt: String(new Date()),
-            text: text,
         };
 
         setComments((prev: Comment[]) => [...prev, newComment]);
-        setName('');
-        setEmail('');
-        setText('');
+
+        setFields((prev) => ({
+            ...prev,
+            email: '',
+            fullName: '',
+            text: '',
+        }));
     };
 
     return (
@@ -49,24 +51,24 @@ const FeedbackForm = ({ setComments }: any) => {
             autoComplete="off">
             <h2 style={{ margin: '0' }}>Обратная связь:</h2>
             <TextField
-                id="name"
-                value={name}
+                name="fullName"
+                value={fields.fullName}
                 onChange={handleInputChange}
                 label="Имя"
                 variant="outlined"
                 margin="dense"
             />
             <TextField
-                id="email"
-                value={email}
+                name="email"
+                value={fields.email}
                 onChange={handleInputChange}
                 label="Почта"
                 variant="outlined"
                 margin="dense"
             />
             <TextField
-                id="text"
-                value={text}
+                name="text"
+                value={fields.text}
                 onChange={handleInputChange}
                 label="Текст..."
                 variant="outlined"
