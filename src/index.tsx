@@ -6,7 +6,8 @@ import ReactDOM from 'react-dom';
 // import App from './tutorial-3/App';
 // import App from './tutorial-4.2/App';
 // import App from './tutorial-5/App';
-import App from './tutorial-6/App';
+// import App from './tutorial-6/App';
+import App from './tutorial-7/App';
 
 ReactDOM.render(
     <React.StrictMode>
