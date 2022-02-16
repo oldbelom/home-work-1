@@ -21,7 +21,13 @@ function App() {
             const data = await response.json();
             setUsers(data);
         } catch (error) {
-            console.log(error);
+            let message;
+            if (error instanceof Error) {
+                message = error.message;
+            } else {
+                message = String(error);
+            }
+            console.log(message);
         }
     };
 
